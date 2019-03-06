@@ -6,8 +6,8 @@ def parity(x):
     par = 0
 
     while x > 0:
-        par ^= x & 1
-        x >>= 1
+        x = x & (x - 1)
+        par ^= 1
 
     return par
 
