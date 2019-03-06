@@ -1,4 +1,5 @@
 from test_framework import generic_test
+from functools import reduce
 
 words = {}
 word_size = 16
@@ -14,16 +15,16 @@ def parity(x):
 
     return par
 
+#preload all subword parities
+for i in range(bit_mask + 1):
+    words[i] = parity(i)
+
 def cached_parity(x):
     # TODO - you fill in here.
     parity_tracker = 0
     for i in range(4):
         sub_word = (x >> (word_size * i)) & bit_mask
-        if sub_word in words:
-            comparator = words[sub_word]
-        else:
-            comparator = words[sub_word] = parity(sub_word)
-        parity_tracker ^= comparator
+        parity_tracker ^= words[sub_word]
     return parity_tracker
 
 
