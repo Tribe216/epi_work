@@ -8,7 +8,15 @@ from test_framework.test_utils import enable_executor_hook
 
 def even_odd(A):
     # TODO - you fill in here.
-    return
+    arr = A
+    holder = 0
+
+    for i in range(len(arr)):
+        if arr[i] % 2 == 0:
+            arr[i], arr[holder] = arr[holder], arr[i]
+            holder += 1
+
+    return arr
 
 
 @enable_executor_hook
